@@ -7,7 +7,12 @@ import env from "../env";
 const GITHUB_CLIENT_ID = env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = env.GITHUB_CLIENT_SECRET;
 
-export const { handlers:{GET, POST}, auth, signIn, signOut } = NextAuth({
+export const {
+    handlers: { GET, POST },
+    auth,
+    signIn,
+    signOut,
+} = NextAuth({
     adapter: PrismaAdapter(db),
     providers: [
         GitHub({
@@ -15,6 +20,7 @@ export const { handlers:{GET, POST}, auth, signIn, signOut } = NextAuth({
             clientSecret: GITHUB_CLIENT_SECRET,
         }),
     ],
+    trustHost: true,
     callbacks: {
         async session({ session, user }: any) {
             if (session && user) {
