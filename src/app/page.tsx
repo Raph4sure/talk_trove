@@ -26,7 +26,7 @@ export default async function Home() {
             ) : (
                 <div>Signed Out</div>
             )}
-            <Profile />
+            <Profile />  
         </div>
     )
 }
