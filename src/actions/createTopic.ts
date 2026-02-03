@@ -17,7 +17,7 @@ const createTopicSchema = z.object({
         }),
     description: z
         .string()
-        .min(10, { message: "Name must have minimum of (10) characters" }),
+        .min(10, { message: "Description must have minimum of (10) characters" }),
 });
 
 interface CreateTopicFormState {

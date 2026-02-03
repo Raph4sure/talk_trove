@@ -6,6 +6,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@heroui/popover";
 import { Button } from "@heroui/button";
 import { Input, Textarea } from "@heroui/input";
 import * as actions from "@/actions";
+import FormButton from "../common/formButton";
 
 export default function TopicCreateForm() {
     const [formState, action] = useFormState(actions.createTopic, {
@@ -44,7 +45,8 @@ export default function TopicCreateForm() {
                         {formState.errors._form ? (
                             <div className="rounded-xl p-2 bg-red-400 border border-red-700">{formState.errors._form?.join(", ")}</div>
                         ) : null}
-                        <Button type="submit">Submit</Button>
+                        {/* <Button type="submit">Submit</Button> */}
+                        <FormButton>Save</FormButton>
                     </div>
                 </form>
             </PopoverContent>
