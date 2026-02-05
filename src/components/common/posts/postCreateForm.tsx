@@ -8,8 +8,13 @@ import { Input, Textarea } from "@heroui/input";
 import * as actions from "@/actions";
 import FormButton from "../formButton";
 
-export default function PostCreateForm() {
-    const [formState, action] = useFormState(actions.createPost, {
+
+interface PostCreateFormProps{
+    slug: string;
+}
+
+export default function PostCreateForm({slug}: PostCreateFormProps) {
+    const [formState, action] = useFormState(actions.createPost.bind(null, slug), {
         errors: {},
     });
 

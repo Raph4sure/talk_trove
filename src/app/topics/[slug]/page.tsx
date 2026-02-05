@@ -17,8 +17,9 @@ export default async function TopicShow({ params }: TopicShowProps) {
                 <h1 className="text-2xl font-bold mb-2">{slug}</h1>
             </div>
             <div>
-                <PostCreateForm />
+                <PostCreateForm slug={slug} />
             </div>
         </div>
     );
 }
+ 
