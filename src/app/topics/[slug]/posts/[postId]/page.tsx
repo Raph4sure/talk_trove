@@ -12,7 +12,9 @@ interface PostShowPageProps {
 }
 
 export default async function PostShowPage({ params }: PostShowPageProps) {
-    const { slug, postId } = params;
+  const { slug, postId } = await params;
+  
+  console.log(slug);
 
     return (
         <div className="space-y-3">
@@ -22,7 +24,7 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
             >
                 {"< "}Back to {slug}
             </Link>
-            {/* <PostShow /> */}
+        <PostShow postId={postId} />
             {/* <CommentCreateForm postId={postId} startOpen /> */}
             {/* <CommentList comments={comments} /> */}
         </div>
