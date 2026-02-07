@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Comment } from "../generated/client";
 import { db } from "@/db";
 
@@ -5,7 +6,7 @@ export type commentWithAuthor = Awaited<
     ReturnType<typeof fetchCommentsByPostId>
 >[number];
 
-function fetchCommentsByPostId(postId: string) {
+const fetchCommentsByPostId = cache((postId: string) => {
     return db.comment.findMany({
         where: { postId },
         include: {
@@ -17,6 +18,6 @@ function fetchCommentsByPostId(postId: string) {
             },
         },
     });
-}
+});
 
 export default fetchCommentsByPostId;

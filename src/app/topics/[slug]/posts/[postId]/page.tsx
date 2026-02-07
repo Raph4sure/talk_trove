@@ -5,7 +5,6 @@ import CommentCreateForm from "@/components/comments/comment-create-form";
 import paths from "@/path";
 import fetchCommentsByPostId from "@/db/queries/comments";
 
-
 interface PostShowPageProps {
     params: {
         slug: string;
@@ -14,9 +13,9 @@ interface PostShowPageProps {
 }
 
 export default async function PostShowPage({ params }: PostShowPageProps) {
-  const { slug, postId } = await params;
-  
-  console.log(slug);
+    const { slug, postId } = await params;
+
+    console.log(slug);
 
     return (
         <div className="space-y-3">
@@ -26,9 +25,9 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
             >
                 {"< "}Back to {slug}
             </Link>
-        <PostShow postId={postId} />
+            <PostShow postId={postId} />
             <CommentCreateForm postId={postId} startOpen />
-            <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
+            <CommentList postId={postId} />
         </div>
     );
-} 
+}
