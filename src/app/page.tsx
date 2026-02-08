@@ -1,13 +1,24 @@
+import PostList from "@/components/posts/post-list";
 import TopicCreateForm from "@/components/topics/topicCreateForm";
 import TopicList from "@/components/topics/topicList";
+import { fetchPostBySearchTerm, fetchTopPosts } from "@/db/queries/posts";
 import { Divider } from "@heroui/divider";
 
-export default async function Home() {
+interface HomeProps {
+    searchParams: Promise<{ term?: string }>;
+}
 
+export default async function Home({ searchParams }: HomeProps) {
+    const { term } = await searchParams;
+
+    const fetchData = term ? () => fetchPostBySearchTerm(term) : fetchTopPosts;
     return (
         <div className="grid grid-cols-4 gap-4 p-4">
             <div className="col-span-3">
-                <h1 className="text-xl m-2">Top Post</h1>
+                <h1 className="text-xl m-2">
+                    {term ? `Search Results for: ${term}` : "Top Post"}
+                </h1>
+                <PostList fetchData={fetchData} />
             </div>
             <div className="border-0 shadow-2xl py-3 px-2 flex flex-col">
                 <TopicCreateForm />

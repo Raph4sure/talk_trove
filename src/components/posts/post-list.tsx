@@ -1,13 +1,24 @@
-import type { PostWithDataa } from "@/db/queries/posts";
+import type { PostWithData } from "@/db/queries/posts";
 import Link from "next/link";
 import paths from "@/path";
 
 interface PostListProps {
-    fetchData: () => Promise<PostWithDataa[]>;
+    fetchData: () => Promise<PostWithData[]>;
 }
 
 export default async function PostList({ fetchData }: PostListProps) {
-  const posts = await fetchData();
+    const posts = await fetchData();
+    
+    if (posts.length === 0) {
+        return (
+            <div className="text-center p-10 border rounded bg-gray-50">
+                <h2 className="text-xl font-semibold">No topics found</h2>
+                <p className="text-gray-500">
+                    Try searching for something else!
+                </p>
+            </div>
+        );
+    }
 
     const renderedPosts = posts.map((post) => {
         const topicSlug = post.topic.slug;
